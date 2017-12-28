@@ -1,0 +1,16 @@
+service cron start
+ps -ax | grep cron
+在命令行输入: crontab -e 然后添加相应的任务，wq存盘退出。
+        2)、直接编辑/etc/crontab 文件，即vi /etc/crontab，添加相应的任务。
+crontab -e
+10 9 * * * root /bin/sh /home/ops/ylcheng/lagou.sh >/home/ops/ylcheng/lagou.log 2>&1
+10 15 * * * root /bin/sh /home/ops/ylcheng/lagou.sh >/home/ops/ylcheng/lagou.log 2>&1
+查看定时任务
+crontab -l
+删除定时任务
+crontab -e
+脚本需要切换用户输入密码（linux可安装expect）
+#!/usr/bin/expect
+su - mao   #你要执行的命令
+expect "Password:"    #执行后终端回显的交互信息
+send "admin_123\r"    #当终端出现上面的交互详细后，模拟键盘输入的内容
